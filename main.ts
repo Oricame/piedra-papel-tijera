@@ -4,23 +4,14 @@ radio.onReceivedNumber(function (receivedNumber) {
 })
 input.onButtonPressed(Button.A, function () {
     cuento = cuento + 1
-    mi_mano = cuento % 1
+    mi_mano = cuento % 3
     if (mi_mano == 1) {
         basic.showIcon(IconNames.SmallSquare)
     } else if (mi_mano == 2) {
-        basic.showLeds(`
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            # # # # #
-            `)
+        basic.showIcon(IconNames.Square)
     } else if (mi_mano == 3) {
         basic.showIcon(IconNames.Scissors)
     }
-})
-radio.onReceivedString(function (receivedString) {
-    tu_mano = 0
 })
 input.onButtonPressed(Button.B, function () {
     escogido = true
@@ -31,12 +22,10 @@ let tu_mano = 0
 let recibido = false
 let cuento = 0
 let mi_mano = 0
-radio.setGroup(1)
+radio.setGroup(146)
 mi_mano = 0
 cuento = 0
 basic.forever(function () {
-    escogido = false
-    escogido = false
     if (mi_mano == tu_mano) {
         basic.showIcon(IconNames.No)
     } else {
