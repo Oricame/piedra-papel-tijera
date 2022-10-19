@@ -1,53 +1,55 @@
 radio.onReceivedNumber(function (receivedNumber) {
     recibido = true
-    tu_mano = receivedNumber
+    tumano = receivedNumber
 })
 input.onButtonPressed(Button.A, function () {
     cuento = cuento + 1
-    mi_mano = cuento % 3
-    if (mi_mano == 1) {
+    mimanita = cuento % 3
+    if (mimanita == 0) {
         basic.showIcon(IconNames.SmallSquare)
-    } else if (mi_mano == 2) {
+    } else if (mimanita == 1) {
         basic.showIcon(IconNames.Square)
-    } else if (mi_mano == 3) {
+    } else if (mimanita == 2) {
         basic.showIcon(IconNames.Scissors)
     }
 })
 input.onButtonPressed(Button.B, function () {
     escogido = true
-    radio.sendNumber(mi_mano)
+    radio.sendNumber(mimanita)
 })
 let escogido = false
-let tu_mano = 0
+let tumano = 0
 let recibido = false
 let cuento = 0
-let mi_mano = 0
+let mimanita = 0
 radio.setGroup(146)
-mi_mano = 0
+mimanita = 0
 cuento = 0
 basic.forever(function () {
-    if (mi_mano == tu_mano) {
-        basic.showIcon(IconNames.No)
-    } else {
-        if (mi_mano == 1 && tu_mano == 2) {
-            basic.showIcon(IconNames.Sad)
+    if (escogido == true && recibido == true) {
+        recibido = false
+        escogido = false
+        if (mimanita == tumano) {
+            basic.showIcon(IconNames.No)
         } else {
-            if (mi_mano == 1 && tu_mano == 3) {
-                basic.showIcon(IconNames.Happy)
+            if (mimanita == 0 && tumano == 1) {
+                basic.showIcon(IconNames.Sad)
             } else {
-                if (mi_mano == 2 && tu_mano == 1) {
+                if (mimanita == 0 && tumano == 2) {
                     basic.showIcon(IconNames.Happy)
                 } else {
-                    if (mi_mano == 2 && tu_mano == 3) {
-                        basic.showIcon(IconNames.Sad)
+                    if (mimanita == 1 && tumano == 0) {
+                        basic.showIcon(IconNames.Happy)
                     } else {
-                        if (mi_mano == 3 && tu_mano == 1) {
+                        if (mimanita == 1 && tumano == 2) {
                             basic.showIcon(IconNames.Sad)
                         } else {
-                            if (mi_mano == 3 && tu_mano == 2) {
-                                basic.showIcon(IconNames.Happy)
+                            if (mimanita == 2 && tumano == 0) {
+                                basic.showIcon(IconNames.Sad)
                             } else {
-                            	
+                                if (mimanita == 2 && tumano == 1) {
+                                    basic.showIcon(IconNames.Happy)
+                                }
                             }
                         }
                     }
