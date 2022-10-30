@@ -4,51 +4,63 @@ radio.onReceivedNumber(function (receivedNumber) {
 })
 input.onButtonPressed(Button.A, function () {
     cuento = cuento + 1
-    mimanita = cuento % 3
-    if (mimanita == 0) {
+    mimano = cuento % 5
+    if (mimano == 0) {
         basic.showIcon(IconNames.SmallSquare)
-    } else if (mimanita == 1) {
+    } else if (mimano == 1) {
         basic.showIcon(IconNames.Square)
-    } else if (mimanita == 2) {
+    } else if (mimano == 2) {
         basic.showIcon(IconNames.Scissors)
+    } else if (mimano == 3) {
+        basic.showIcon(IconNames.Snake)
+    } else if (mimano == 4) {
+        basic.showIcon(IconNames.Rabbit)
     }
 })
 input.onButtonPressed(Button.B, function () {
     escogido = true
-    radio.sendNumber(mimanita)
+    radio.sendNumber(mimano)
 })
 let escogido = false
 let tumano = 0
 let recibido = false
 let cuento = 0
-let mimanita = 0
+let mimano = 0
 radio.setGroup(146)
-mimanita = 0
+mimano = 0
 cuento = 0
 basic.forever(function () {
     if (escogido == true && recibido == true) {
         recibido = false
         escogido = false
-        if (mimanita == tumano) {
+        if (mimano == tumano) {
             basic.showIcon(IconNames.No)
         } else {
-            if (mimanita == 0 && tumano == 1) {
-                basic.showIcon(IconNames.Sad)
+            if (mimano == 0 && (tumano == 2 || mimano == 0 && tumano == 3)) {
+                basic.showIcon(IconNames.Happy)
             } else {
-                if (mimanita == 0 && tumano == 2) {
-                    basic.showIcon(IconNames.Happy)
+                if (mimano == 0 && (tumano == 1 || mimano == 0 && tumano == 4)) {
+                    basic.showIcon(IconNames.Sad)
                 } else {
-                    if (mimanita == 1 && tumano == 0) {
+                    if (mimano == 1 && (tumano == 0 || mimano == 1 && tumano == 4)) {
                         basic.showIcon(IconNames.Happy)
                     } else {
-                        if (mimanita == 1 && tumano == 2) {
+                        if (mimano == 1 && (tumano == 2 || mimano == 1 && tumano == 3)) {
                             basic.showIcon(IconNames.Sad)
                         } else {
-                            if (mimanita == 2 && tumano == 0) {
-                                basic.showIcon(IconNames.Sad)
+                            if (mimano == 2 && (tumano == 1 || mimano == 2 && tumano == 3)) {
+                                basic.showIcon(IconNames.Happy)
                             } else {
-                                if (mimanita == 2 && tumano == 1) {
+                                if (mimano == 2 && (tumano == 4 || mimano == 2 && tumano == 0)) {
+                                    basic.showIcon(IconNames.Sad)
+                                } else if (mimano == 2 && (tumano == 1 || mimano == 2 && tumano == 4)) {
                                     basic.showIcon(IconNames.Happy)
+                                } else if (mimano == 3 && (tumano == 0 || mimano == 3 && tumano == 2)) {
+                                    basic.showIcon(IconNames.Sad)
+                                } else if (mimano == 4 && (tumano == 0 || mimano == 4 && tumano == 2)) {
+                                    basic.showIcon(IconNames.Happy)
+                                } else if (mimano == 4 && (tumano == 1 || mimano == 4 && tumano == 3)) {
+                                    basic.showIcon(IconNames.Sad)
                                 }
                             }
                         }
